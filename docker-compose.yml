@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_app
+    ports:
+      - "3000:3000"  # Adjust the port number if necessary
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://mongo:27017/birthdayReminder
+    volumes:
+      - .:/app
+    command: node index.js # Main app
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_worker
+    environment:
+      NODE_ENV: production
+    command: node worker.js
