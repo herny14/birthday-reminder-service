@@ -8,4 +8,4 @@ Following are the instructions on how to run the application:
 5.	Type command docker-compose up in the terminal. Wait for docker to run the image.
 6.	Then, the application will start and worker process is automatically run as well. 
 
-Documentation link: https://drive.google.com/file/d/18C3UYe3nAl_Qq9ap6rhiTataIbwO2HbF/view?usp=sharing
+Documentation link: https://drive.google.com/file/d/14RavInBYu5Q4DwC4VyxwwJCJRwOdt191/view?usp=sharing
