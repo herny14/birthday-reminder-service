@@ -57,7 +57,7 @@ const updateUser = async (req, res) => {
     }, { $set: updateData }, { new: true });
 
     if (_.isEmpty(result)) {
-      return res.status(200).json({ message: "User not found" });
+      return res.status(403).json({ message: "User not found" });
     }
     else {
       return res.status(200).json(result);
@@ -79,7 +79,7 @@ const deleteUser = async (req, res) => {
     })
 
     if (_.isEmpty(result)) {
-      return res.status(200).json({ message: "User not found" });
+      return res.status(403).json({ message: "User not found" });
     }
     else {
       return res.status(200).json(result);
