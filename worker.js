@@ -6,7 +6,13 @@ import "moment-timezone";
 
 export const reminderWorker = async () => {
   try {
-    const listUsers = await User.find({});
+
+    const startOfRange = moment().tz("Asia/Jakarta").subtract(1, 'days').startOf('day').toDate();
+    const endOfRange = moment().tz("Asia/Jakarta").add(1, 'days').endOf('day').toDate();
+
+    const listUsers = await User.find({
+      birthday: { "$gte": startOfRange, "$lte": endOfRange }
+    });
 
     for (const user of listUsers) {
       const userBirthday = moment(user.birthday).format("MM-DD");

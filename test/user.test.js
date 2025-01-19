@@ -4,6 +4,7 @@ import moment from 'moment-timezone';
 import User from '../models/user.model.js';
 
 import userCtrl from "../controllers/user.controller.js";
+import helperTimezone from "../helpers/timezone.js";
 
 describe("createUser", () => {
   let req, res;
@@ -54,7 +55,7 @@ describe("createUser", () => {
     req.body.newUser.timezone = "Invalid/Timezone";
 
     // Stub isValidTimezone to return false for invalid timezone
-    sinon.stub(userCtrl, 'isValidTimezone').returns(false);
+    sinon.stub(helperTimezone, 'isValidTimezone').returns(false);
 
     await userCtrl.createUser(req, res);
 
@@ -70,7 +71,7 @@ describe("createUser", () => {
     req.body.newUser.timezone = "Asia/Kuala_Lumpur";
 
     // Stub isValidTimezone to return true for valid timezone
-    sinon.stub(userCtrl, 'isValidTimezone').returns(true);
+    sinon.stub(helperTimezone, 'isValidTimezone').returns(true);
 
     await userCtrl.createUser(req, res);
 

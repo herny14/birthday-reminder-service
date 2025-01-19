@@ -1,18 +1,14 @@
 import User from "../models/user.model.js";
-import "moment-timezone";
 import _ from "lodash";
-import moment from "moment";
 
-const isValidTimezone = (timezone) => {
-  return moment.tz.zone(timezone) !== null;
-}
+import helperTimezone from "../helpers/timezone.js";
 
 const createUser = async (req, res) => {
   try {
     let data = req.body.newUser;
 
     // VALIDATE TIMEZONE
-    if (!isValidTimezone(data.timezone)) {
+    if (!helperTimezone.isValidTimezone(data.timezone)) {
       return res.status(403).json({ message: "Invalid timezone" });
     }
 
@@ -105,16 +101,11 @@ const getAllUser = async (req, res) => {
   }
 }
 
-const sum = (a, b) => {
-  return a + b;
-}
 
 export default {
-  isValidTimezone,
   createUser,
   readUser,
   updateUser,
   deleteUser,
-  getAllUser,
-  sum
+  getAllUser
 }
